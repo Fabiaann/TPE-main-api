@@ -47,6 +47,33 @@ class ApiAlbumesController
     $this->view->response($albumes, 200);}
     
   }
+  public function getAllalbumsugerido($params = null)
+  {
+    $startAt =$_GET["startAt"] ?? null;
+    $endAt =$_GET["endAt"] ?? null;
+  
+
+    $OrderBy = $_GET["OrderBy"] ?? null;
+    $OrderModel =$_GET["OrderModel"] ?? null;
+
+    $validOrderBys = ["nombre", "canciones", "duracion", "artista", "lanzamiento"]; 
+    $validOrderModels = ["ASC", "DESC"]; 
+    if (
+      //in_aaray comprueba que el valor exista en el arreglo.
+      ($OrderBy !== null && !in_array($OrderBy, $validOrderBys)) || ($OrderModel !== null && !in_array($OrderModel, $validOrderModels))
+  ) {
+      $this->view->response("Posible error en valores  " ."(". $OrderBy .")". " o " ."(". $OrderModel .")", 404);
+      return;
+  }
+
+
+   
+  
+    else{
+    $sugerencia  = $this->model->getalbumsugerido($OrderBy,$OrderModel,$startAt,$endAt);
+    $this->view->response($sugerencia , 200);}
+    
+  }
 
   function getallbyfilter($params = null){
     $startAt=$_GET["startAt"] ?? null;
@@ -59,13 +86,13 @@ class ApiAlbumesController
     $albumes = $this->model->getfilter($LinkTo,$EqualTO);
     $this->view->response($albumes, 200);}}
     else{
-      $this->view->response("error", 200);
+      $this->view->response("error", 400);
     }
     
 
   }
 
-  public function get($params = null)
+  public function getbyid($params = null)
   {
 
     $idAlbumes = $params[':ID'];
@@ -108,7 +135,7 @@ class ApiAlbumesController
 
     $id = $this->model->insertaralbumsugerido($nombre, $genero, $artista);
 
-   if($id>0){
+   if($id>0 && $id > 0 && isset($artista) && isset($genero) && $artista != null && $genero != null){
 
     $this->view->response("el album con el id=$id se creo exitosamente", 200);
    }
@@ -129,7 +156,7 @@ class ApiAlbumesController
 
     $realizado = $this->model->editaralbumsugerido($nombre, $genero, $artista,$id);
 
-   if($realizado>0){
+   if($realizado>0 && isset($artista) && isset($genero) && $artista != null && $genero != null){
 
     $this->view->response("el album con el id=$realizado se actualizo correctamente", 201);
    }

@@ -7,12 +7,14 @@ $router= new Router() ;
 
 //TABLA DE RUTEO
 
-$router->addRoute('home','GET','ApiAlbumesController','getALL') ;
-$router->addRoute('home/:ID','GET','ApiAlbumesController','get') ;
-$router->addRoute('home:filter','GET','ApiAlbumesController','getallbyfilter') ;
-$router->addRoute('albumes','POST', 'ApiAlbumesController','add');
-$router->addRoute('home/:ID','DELETE','ApiAlbumesController','delete') ;
-$router->addRoute('albumes/:ID','PUT','ApiAlbumesController','update');
+$router->addRoute('album','GET','ApiAlbumesController','getALL') ;
+
+$router->addRoute('sugerencia','GET','ApiAlbumesController','getAllalbumsugerido') ;
+$router->addRoute('album/:ID','GET','ApiAlbumesController','getbyid') ;
+$router->addRoute('album/:ID/:filter','GET','ApiAlbumesController','getallbyfilter') ;
+$router->addRoute('album','POST', 'ApiAlbumesController','add');
+$router->addRoute('album/:ID','DELETE','ApiAlbumesController','delete') ;
+$router->addRoute('sugerencia/:ID','PUT','ApiAlbumesController','update');
 
 
 //RUTEA

@@ -15,28 +15,30 @@ class albummodels
 
     }
 
-    function obtener($OrderBy = null, $OrderModel = null,$startAt=null,$endAt=null)
+    function obtener($OrderBy = null, $OrderModel = null, $startAt = null, $endAt = null)
     {
-      
+
         //ordena datos pero no limita para paginar.
-        if ($OrderBy != null && $OrderModel != null && $startAt== null && $endAt==null) {
+        if ($OrderBy != null && $OrderModel != null && $startAt == null && $endAt == null) {
             $sql = "SELECT * FROM album ORDER BY $OrderBy $OrderModel";
-        } 
+        }
 
         //ahora limita y ordena.
         if ($OrderBy != null && $OrderModel != null && $startAt != null && $endAt != null) {
             $sql = "SELECT * FROM album ORDER BY $OrderBy $OrderModel LIMIT $startAt, $endAt ";
-        } 
+        }
         //solo limita, no ordena.
         if ($OrderBy == null && $OrderModel == null && $startAt != null && $endAt != null) {
             $sql = "SELECT * FROM album LIMIT $startAt, $endAt ";
-        } 
+        }
+
+        //no limita ni orderna.
         if ($OrderBy == null && $OrderModel == null && $startAt == null && $endAt == null) {
             $sql = "SELECT * FROM album  ";
-        } 
-       
-        
-    
+        }
+
+
+
 
 
 
@@ -58,7 +60,7 @@ class albummodels
             $query = $this->db->prepare($sql);
             $query->bindParam(":" . $LinkTo, $EqualTO, PDO::PARAM_STR);
             $query->execute();
-            //cargas es un arreglo de cargas
+            
 
             return $query->fetchAll(PDO::FETCH_CLASS);
 
@@ -171,8 +173,43 @@ class albummodels
     function editaralbumsugerido($nombre, $genero, $artista, $id)
     {
 
-        $query = $this->db->prepare('UPDATE   sugerencia SET albumsugerido=?,generoalbumsugerido=?,artistaalbumsugerido=? where =?');
+        $query = $this->db->prepare('UPDATE   sugerencia SET albumsugerido=?,generoalbumsugerido=?,artistaalbumsugerido=? where  id_albumsugerido=?');
         $result = $query->execute([$nombre, $genero, $artista, $id]);
         return $result;
+    }
+
+    function getalbumsugerido($OrderBy = null, $OrderModel = null, $startAt = null, $endAt = null)
+    {
+
+        //ordena datos pero no limita para paginar.
+        if ($OrderBy != null && $OrderModel != null && $startAt == null && $endAt == null) {
+            $sql = "SELECT * FROM sugerencia ORDER BY $OrderBy $OrderModel";
+        }
+
+        //ahora limita y ordena.
+        if ($OrderBy != null && $OrderModel != null && $startAt != null && $endAt != null) {
+            $sql = "SELECT * FROM sugerencia ORDER BY $OrderBy $OrderModel LIMIT $startAt, $endAt ";
+        }
+        //solo limita, no ordena.
+        if ($OrderBy == null && $OrderModel == null && $startAt != null && $endAt != null) {
+            $sql = "SELECT * FROM sugerencia LIMIT $startAt, $endAt ";
+        }
+
+        //no limita ni orderna.
+        if ($OrderBy == null && $OrderModel == null && $startAt == null && $endAt == null) {
+            $sql = "SELECT * FROM sugerencia  ";
+        }
+
+
+
+
+
+
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        //cargas es un arreglo de cargas
+        $sugerencia = $query->fetchall(PDO::FETCH_OBJ);
+        return $sugerencia;
+
     }
 }
