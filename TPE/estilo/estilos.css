@@ -1,0 +1,29 @@
+.nav{
+
+    background-color:  salmon;
+    border: solid red 1px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 5%;
+ 
+}
+
+.nav a{
+
+ font-style: italic ;
+ font-size:xx-large;
+ text-decoration:  none;
+}
+.formu{
+    border: solid rgba(35, 168, 11, 0.788) 3px;
+    background-color: rgb(233, 203, 203);
+    text-decoration: rgb(166, 130, 83);
+    
+ 
+}
+
+ul{
+    border: solid 10px red;
+}
+
+

@@ -1,0 +1,45 @@
+<div class="mt-5 w-25 mx-auto ">
+  <form action="./editar/<?= $id ?>" method="POST">
+    <div class="form-group" class="mt-5 w-25 mx-auto ">
+      <label>nombre</label>
+      <input type="text" name="nombre" class="form-control">
+
+    </div>
+    <div class="form-group">
+
+      <label for="">canciones</label>
+      <input type="text" name="canciones" class="form-control">
+    </div>
+    <div class="form-group">
+
+      <label for="">duracion</label>
+      <input type="text" name="duracion" class="form-control">
+
+    </div>
+    <div class="form-group">
+      <label for="">artista</label>
+      <input type="text" name="artista" class="form-control">
+
+    </div>
+    <div class="form-group">
+      <label for="">lanzamiento</label>
+      <input type="date" name="lanzamiento">
+    </div>
+    <div class="form-group">
+      <label for="">genero</label>
+      <select name="genero" id="">
+        <?php foreach ($categorias as $genero): ?>
+          <option value="<?= $genero->id_categoria ?>">
+            <?= $genero->genero ?>
+          </option>
+        <?php endforeach ?>
+      </select>
+    </div>
+
+
+
+
+    <button type="submit" class="btn btn-primary mx-auto d-block">enviar</button>
+
+  </form>
+</div>

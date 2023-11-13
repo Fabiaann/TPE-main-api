@@ -1,0 +1,21 @@
+<div class="m-auto" style="width: 50rem; ">
+  <ul class="list-group">
+    <li class="list-group-item">album </li>
+
+
+    <?php foreach ($categorias as $album): ?>
+
+
+      <li class="list-group-item navbar-expand-lg ">
+        <a href="ver/<?= $album->id_album ?>"><?= $album->nombre ?></a>
+      </li>
+
+      <?php
+    endforeach; ?>
+  </ul>
+
+
+</div>
+<div class="text-center">
+  <a href="home" class="btn btn-dark" style="width: 10rem; border-radius: 100px; margin:30px;">volver</a>
+</div>

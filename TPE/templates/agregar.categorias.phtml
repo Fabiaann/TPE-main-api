@@ -1,0 +1,55 @@
+<div class="text-center">
+  <p class="text-primary">Para agregar o editar un nuevo album : <a href="./listar" class="btn btn-dark"
+      style="width: 10rem; border-radius: 100px; margin:30px;">agregar/editar</a></p>
+</div>
+
+<div class="mt-5 w-25 mx-auto ">
+  <p id="formulariocategoria">agregar categoria</p>
+  <form action="agregarcategoria" method="POST">
+    <div class="form-group" class="mt-5 w-25 mx-auto ">
+      <label>genero</label>
+      <input type="text" name="genero" class="form-control">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary mx-auto d-block">enviar</button>
+</div>
+</div>
+</form>
+</div>
+
+
+
+
+
+
+
+<div class="m-auto" style="width: 80rem; ">
+  <ul class="list-group">
+    <table class="table m-auto" style="width: 75rem;  ">
+      <thead class="table-dark">
+        <th>nombre categoria</th>
+
+        <th>editar</th>
+        <th>borrar </th>
+        </tr>
+      </thead>
+
+
+      <?php foreach ($categorias as $genero): ?>
+        <tr>
+          <td value="<?= $genero->id_categoria ?>">
+            <?= $genero->genero ?>
+          </td>
+          <td value="<?= $genero->id_categoria ?>">
+            <a href="edicioncategoria/<?= $genero->id_categoria ?>" class="btn btn-success">editar</a>
+          </td>
+          <td value="<?= $genero->id_categoria ?>">
+            <a href="borrarcategoria/<?= $genero->id_categoria ?>" class="btn btn-danger">borrar</a>
+          </td>
+
+
+        </tr>
+      <?php endforeach; ?>
+
+    </table>

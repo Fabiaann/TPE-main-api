@@ -1,0 +1,34 @@
+<div class="m-auto" style="width: 50rem; ">
+    <ul class="list-group">
+        <li class="list-group-item">Nombre album</li>
+
+
+        <?php foreach ($albumes as $album): ?>
+            <li class="list-group-item navbar-expand-lg ">
+                <a href="ver/<?= $album->id_album ?>"><?= $album->nombre ?></a>
+            </li>
+
+            <?php
+        endforeach; ?>
+    </ul>
+
+
+</div>
+
+<div class="m-auto" style="width: 50rem; ">
+    <ul class="list-group">
+        <li class="list-group-item">Album por genero</li>
+
+
+        <?php foreach ($categorias as $album): ?>
+
+
+            <li class="list-group-item navbar-expand-lg ">
+                <a href="categorias/<?= $album->id_categoria ?>"><?= $album->genero ?></a>
+            </li>
+
+            <?php
+        endforeach; ?>
+    </ul>
+
+</div>

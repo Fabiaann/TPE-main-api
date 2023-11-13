@@ -1,0 +1,60 @@
+<table class="table m-auto" style="width: 75rem; ">
+        <thead class="table-dark">
+                <th>nombre albumes</th>
+                <th>cantidad de canciones</th>
+                <th>duracion </th>
+                <th>artistas </th>
+                <th>genero</th>
+                <th>lanzamiento </th>
+                </tr>
+        </thead>
+
+
+        <?php foreach ($items as $albumes): ?>
+                <tr>
+                        <td>
+                                <?= $albumes->nombre ?>
+                        </td>
+
+                        <td>
+                                <?= $albumes->canciones ?>
+                        </td>
+                        <td>
+                                <?= $albumes->duracion ?>
+                        </td>
+                        <td>
+                                <?= $albumes->artista ?>
+                        </td>
+
+
+
+
+                        <td>
+                                <?php
+                                foreach ($categorias as $genero):
+
+                                        if ($albumes->id_categoria == $genero->id_categoria) { ?>
+                                                <p>
+                                                        <?= $genero->genero ?>
+                                                </p>
+                                                <?php
+                                        }
+
+                                        ?>
+                                <?php endforeach ?>
+                        </td>
+
+                        <td>
+                                <?= $albumes->lanzamiento ?>
+                        </td>
+
+
+
+
+                </tr>
+        <?php endforeach; ?>
+</table>
+
+<div class="text-center">
+        <a href="home" class="btn btn-dark" style="width: 10rem; border-radius: 100px; margin:30px;">volver</a>
+</div>

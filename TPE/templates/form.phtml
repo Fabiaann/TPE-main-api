@@ -1,0 +1,105 @@
+<div class="text-center">
+  <p class="text-primary">Para agregar o editar una categoria : <a href="formularioalbum" class="btn btn-dark"
+      style="width: 10rem; border-radius: 100px; margin:30px;">agregar/editar</a></p>
+</div>
+
+<div class="mt-5 w-25 mx-auto ">
+  <p id="formularioalbum">agregar album</p>
+  <form action="agregar" method="POST">
+    <div class="form-group" class="mt-5 w-25 mx-auto ">
+      <label>nombre</label>
+      <input type="text" name="nombre" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="">canciones</label>
+      <input type="text" name="canciones" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="">duracion</label>
+      <input type="text" name="duracion" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="">artista</label>
+      <input type="text" name="artista" class="form-control">
+    </div>
+    <label for="">genero</label>
+    <select name="genero" id="">
+      <?php foreach ($categorias as $genero): ?>
+        <option value="<?= $genero->id_categoria ?>">
+          <?= $genero->genero ?>
+        </option>
+      <?php endforeach ?>
+    </select>
+    <label for="">lanzamiento</label>
+    <input type="date" name="lanzamiento">
+</div>
+
+</div>
+<button type="submit" class="btn btn-primary mx-auto d-block">enviar</button>
+</div>
+</div>
+</form>
+</div>
+
+
+
+<div class="m-auto" style="width: 80rem; ">
+  <ul class="list-group">
+    <table class="table m-auto" style="width: 75rem;  ">
+      <thead class="table-dark">
+        <th>nombre albumes</th>
+        <th>cantidad de canciones</th>
+        <th>duracion </th>
+        <th>artistas </th>
+        <th>genero</th>
+        <th>lanzamiento </th>
+        <th>editar</th>
+        <th>borrar </th>
+        </tr>
+      </thead>
+
+
+      <?php foreach ($items as $albumes): ?>
+        <tr>
+          <td>
+            <?= $albumes->nombre ?>
+          </td>
+
+          <td>
+            <?= $albumes->canciones ?>
+          </td>
+          <td>
+            <?= $albumes->duracion ?>
+          </td>
+          <td>
+            <?= $albumes->artista ?>
+          </td>
+
+          <td value="<?= $genero->id_categoria ?>">
+            <?php
+            foreach ($categorias as $genero):
+
+              if ($albumes->id_categoria == $genero->id_categoria) { ?>
+                <p>
+                  <?= $genero->genero ?>
+                </p>
+                <?php
+              }
+
+              ?>
+            <?php endforeach ?>
+          </td>
+          <td>
+            <?= $albumes->lanzamiento ?>
+          </td>
+          <td> <a href="editaralbum/<?= $albumes->id_album ?>" class="btn btn-success">editar</a> </td>
+          <td> <a href="borrar/<?= $albumes->id_album ?>" class="btn btn-danger">borrar</a> </td>
+
+
+
+
+
+        </tr>
+      <?php endforeach; ?>
+
+    </table>
