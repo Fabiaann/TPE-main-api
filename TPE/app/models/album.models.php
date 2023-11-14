@@ -60,7 +60,7 @@ class albummodels
             $query = $this->db->prepare($sql);
             $query->bindParam(":" . $LinkTo, $EqualTO, PDO::PARAM_STR);
             $query->execute();
-            
+
 
             return $query->fetchAll(PDO::FETCH_CLASS);
 
