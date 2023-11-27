@@ -9,6 +9,10 @@ $router = new Router();
 
 $router->addRoute('album', 'GET', 'ApiAlbumesController', 'getALL');
 $router->addRoute('album/:ID', 'GET', 'ApiAlbumesController', 'getbyid');
+
+$router->addRoute('venta/:ID', 'PUT', 'ApiVentasController', 'update');
+$router->addRoute('venta/:ID/:filtro', 'GET', 'ApiVentasController', 'get');
+
 $router->addRoute('album/:ID/:filter', 'GET', 'ApiAlbumesController', 'getallbyfilter');
 $router->addRoute('sugerencia', 'GET', 'ApiAlbumesController', 'getAllalbumsugerido');
 $router->addRoute('sugerencia', 'POST', 'ApiAlbumesController', 'add');
